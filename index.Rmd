@@ -1,0 +1,43 @@
+---
+title: "My Shiny App"
+author: "EA"
+date: '2022-06-16'
+output: ioslides_presentation
+---
+
+ 
+## About the App
+
+This is Shiny App that plots the popularity of a user's first name over time. The babynames data set in R is used. 
+
+ 
+
+## The Baby names Data set
+
+### Description 
+
+Full baby name data provided by the SSA. This includes all names used at least five times.The data set is a data frame with five variables: `year`, `sex`, `name`, `n` and `prop`.
+
+`prop` is just `n` divided by the total number of applicants in the year. This means, proportions are of the people of that sex with that name born in that year.
+
+*** 
+**A preview of the babynames data set**
+```{r, comment = ""}
+library(babynames)
+head(babynames)
+```
+
+
+## A plot of the name Richard over time
+
+```{r, message = FALSE, echo = FALSE}
+library(ggplot2)
+library(dplyr)
+babynames %>%
+    filter(name == "Richard", sex == "M") %>%
+    ggplot() + geom_line(mapping = aes(x = year, y = prop)) +
+    labs(title = "Popularity of the name Richard")
+
+```
+
+
